@@ -1,111 +1,96 @@
-var items = [
-  { name: "juice", price: 50, quantity: 3 },
-  { name: "cookie", price: 30, quantity: 9 },
-  { name: "shirt", price: 880, quantity: 1 },
-  { name: "pen", price: 100, quantity: 2 },
-];
+//my variables
+// let form = document.getElementById("form");
+// let userNameVal = document.getElementById("Username");
+// let eMailVal = document.getElementById("Email");
+// let pAssoWordVal = document.getElementById("password")
+// //Add event
+//made a condition for local storge
+function signup (){
+    const userName = document.getElementById("Username").value.trim();
+    const eMail = document.getElementById("Email").value.trim();
+    const pAssoWord = document.getElementById("password").value.trim();
+    var message = document.getElementById("message");
+    
+    var created = [];
+    var part = [];
 
-//for single items
-let singleItem = items.forEach((item, index) => {
-  let items = item.price;
-  console.log("The price of items", index, "is", items);
-});
+    var person = {
+        username: userName,
+        socialEmail:eMail,
+        passwoord:pAssoWord,
+        createteam:created,
+        partteam:part,
+    };
+    var signupdata = JSON.parse(localStorage.getItem("person")) || [];
+    signupdata.push(person);
+    localStorage.setItem("person",JSON.stringify(signupdata));
 
-//total sum of each item
-let total = items.reduce((sum, item) => sum + item.price, 0);
-console.log("The total prices of items are Rs: ", total);
 
-//Question No 2
 
-var StudentInfo = {
-  firstName: "ejaz",
-  lastName: "khan",
-  email: "ejazkhan819@gmail.com",
-  password: "12345678",
-  age: 29,
-  gender: "male",
-  city: "Karachi",
-  country: "Pakistan",
-};
-
-let fName = StudentInfo.hasOwnProperty("firstName");
-console.log(fName);
-let lName = StudentInfo.hasOwnProperty("lastName");
-console.log(lName);
-let age = StudentInfo.hasOwnProperty("age");
-console.log(age);
-let country = StudentInfo.hasOwnProperty("country");
-console.log(country);
-
-//question no 3
-function Person(first, last, age, id, school) {
-  this.first = first;
-  this.last = last;
-  this.age = age;
-  this.id = id;
-  this.school = school;
+    setTimeout(() => {
+        message.innerHTML = "";
+    }, 2000);
 }
+function login(){
+    let eMail = document.getElementById("Email").value.trim();
+    let pAssoWord = document.getElementById("password").value.trim();
 
-const Student1 = new Person("Muhammad ejaz", "khan", 23, 20974, "saylani");
-const Student2 = new Person("fruqan", "ali", 22, 20975, "saylani");
-console.log(Student1, Student2);
+    var signupdata = JSON.parse(localStorage.getItem("person")) || [];
+    //console.log(signupdata[0].socialEmail);
+    let falg = false;
 
-//qucetion n0 4
-function CheckPopulation(name, gender, address, education, profession) {
-  this.name = name;
-  this.gender = gender;
-  this.address = address;
-  this.education = education;
-  this.profession = profession;
-}
-
-const Peoples = new CheckPopulation(
-  "Muhammad ejaz",
-  "Male",
-  "orangitwon",
-  "fA",
-  "web developer"
-);
-console.log(Peoples);
-
-
-function educationData() {
-  var select = document.getElementById("education");
-  if (localStorage === "") {
-    select[localStorage.getItem("save")].selected = true;
-  } else if (select.value === "cs") {
-    localStorage.setItem("save", select.value);
-  } else if (select.value === "acf") {
-    localStorage.setItem("save", select.value);
-  } else if (select.value === "bba") {
-    localStorage.setItem("save", select.value);
-  } else if (select.value === "ms") {
-    localStorage.setItem("save", select.value);
-  }
-}
+        signupdata.forEach((item,index) => {
+           // console.log(item.passwoord);
+           if(item.socialEmail==eMail&&item.passwoord==pAssoWord){
+               falg = true;
+            window.location.href="team.html"
+            // console.log("ok");
+           }
+            
+        });
+    if (falg==false){
+        
+            alert("email or password is  incoorect");
+        
+    }
 
 
-function professionPeoples() {
-  var profession = document.getElementById("profession");
-  if (localStorage === "") {
-    profession[localStorage.getItem("save")];
-  } else if (profession.value === "Web developer") {
-    localStorage.setItem("profession", profession.value);
-  } else if (profession.value === "React Native") {
-    localStorage.setItem("profession", profession.value);
-  } else if (profession.value === "Flutter Developer") {
-    localStorage.setItem("profession", profession.value);
-  } else if (profession.value === "Andriod developer") {
-    localStorage.setItem("profession", profession.value);
-  }
+
+
+
+
+
+
+
+
+
 }
 
 
 
-var radio = document.getElementsByName("gender");
-for (var i = 0; i < radio.length; i++) {
-  if (radio[i].checked) {
-    localStorage.getItem("gender");
-  }
-}
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
